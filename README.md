@@ -1,35 +1,28 @@
-<div align="center">
+<div align="center"> 
+<img width="160" height="160" alt="Explainify Logo" src="./public/logo.png" /> 
 
-<img width="160" height="160" alt="Explainify Logo" src="./public/logo.png" />
+# Explainify 
+</div> 
 
-# Explainify
+**Explainify** – Type any topic, get a narrated educational animation in minutes. Built for neurodivergent learners who absorb information better through visuals and audio. 
 
-</div>
+<div align="center"> 
 
-**Explainify** – Type any topic, get a narrated educational animation in minutes.  
-Built for neurodivergent learners who absorb information better through visuals and audio.
+## Demo 
+![Explainify in action](./public/output6.gif) 
 
-<div align="center">
+</div> 
 
-## Demo
+--- 
 
-![Explainify in action](./public/output6.gif)
-
-</div>
-
----
-
-## 🎬 Generated Video Example
+## 🎬 Generated Video Example 
 
 A real video Explainify produced for the topic *"How do machines learn to recognize MNIST dataset numbers?"* — storyboard → Manim animation → narration → final MP4.
 
 <div align="center">
-
-<video controls width="80%" src="./public/example-mnist.mp4"></video>
-
+  <img src="./public/output3.gif" alt="Generated Video Example" width="600" />
 </div>
 
-> Can't load the player above? Download or stream it directly: [`example-mnist.mp4`](./public/example-mnist.mp4)
 
 ---
 
