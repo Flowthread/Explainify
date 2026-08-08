@@ -1,103 +1,68 @@
 <div align="center">
 
-<img width="160" height="160" alt="Explainify Logo" src="./public/logo.svg" />
-
-
+<img width="160" height="160" alt="Explainify Logo" src="./public/logo.png" />
 
 # Explainify
 
 </div>
 
-Automatic educational video generator using AI and Manim. Converts any topic into a professional animated video with narration and mathematical visualizations.
+**Explainify** – Type any topic, get a narrated educational animation in minutes.  
+Built for neurodivergent learners who absorb information better through visuals and audio.
 
 <div align="center">
 
-## User Interface
+## Demo
 
-![video](./public/output6.gif)
-
-</div>
-
-<div align="center">
-  
-## Examples
+![Explainify in action](./public/output6.gif)
 
 </div>
 
-> propmt: How do machines learn to recognize MNIST dataset numbers?
-> 
-> model: claude-sonnet-4-5-20250929
-> 
-> response:
+---
 
-<div align="center">
+## 🧠 The Problem
 
-![video](./public/output5.gif)
+Most educational content is text‑heavy and static.  
+For neurodivergent learners (ADHD, dyslexia, autism), this creates friction:
 
-</div>
+- Too much text → cognitive overload  
+- Abstract concepts → hard to visualize  
+- One‑size‑fits‑all explanations → don't always click  
 
-> propmt: What is a Markov chain and how are they related to LLMs?
-> 
-> model: claude-sonnet-4-5-20250929
-> 
-> response:
+**Explainify changes that.**
 
-<div align="center">
+---
 
-![video](./public/output4.gif)
+## ✨ How It Works
 
-</div>
+1. **Type any topic** – e.g., *"How does a solar cell work?"*  
+2. **AI generates a storyboard** – breaks the topic into scenes with narration.  
+3. **Manim animations** – each scene becomes a professional animated visual.  
+4. **Natural voiceover** – synced with the animation (audio duration is passed back into the animation prompt so visuals match the narration).  
+5. **Comprehension check** *(roadmap)* – after watching, the AI asks one micro‑question to verify understanding.  
+6. **Re‑frame loop** *(roadmap)* – on a wrong answer, Explainify picks a new representation strategy (causal diagram, concrete analogy, step‑by‑step) and regenerates the video.
 
-> propmt: How does Cramer's rule work for system of linear equations?
-> 
-> model: claude-sonnet-4-5-20250929
-> 
-> response:
+This adaptive loop is **our unique differentiator** – it discovers *how* the learner understands and changes the representation until it clicks.
 
-<div align="center">
+---
 
-![video](./public/output3.gif)
+## 🔥 Key Features
 
-</div>
+| Feature | Description |
+|---------|-------------|
+| **Multi‑LLM support** | Auto fallback between Claude and OpenAI. |
+| **Auto‑storyboard** | AI generates a scene‑by‑scene script with timings. |
+| **TTS narration** | Natural voiceover with audio‑duration‑synced animations. |
+| **Manim animations** | Professional mathematical and scientific visualizations. |
+| **Code repair loop** | Generated Manim code is auto‑fixed on render errors (up to 3 retries). |
+| **Comprehension check** *(roadmap)* | One micro‑question after each video – tests real understanding. |
+| **Re‑frame loop** *(roadmap)* | On wrong answer, AI picks a new representation strategy and re‑renders. |
+| **Neurodivergent‑friendly** | Low cognitive load, visual‑first, audio‑optional. |
 
-> propmt: how chat gpt works?
-> 
-> model: gpt-5.2
-> 
-> response:
+---
 
-<div align="center">
+## 🏗️ Architecture
 
-![video](./public/output.gif)
-
-</div>
-
-> propmt: how tokenization works in chat gpt?
-> 
-> model: gpt-5.2
-> 
-> response:
-
-<div align="center">
-
-![video](./public/output2.gif)
-
-</div>
-
-## Features
-
-- **Multi-LLM Support** with automatic fallback (OpenAI GPT, Claude)
-- **Automatic script generation** using advanced language models
-- **Educational animations** with Manim Community Edition
-- **Multi-language support** (automatically detects topic language)
-- **Optimized videos** of ~60 seconds with multiple scenes
-- **Automatic concatenation** of fragments into final video
-
-## Architecture
-
-### System Overview
-
-Explainify is a multi-agent system that orchestrates several specialized components to transform a topic into an educational video. The system follows a pipeline architecture where each agent has a specific responsibility.
+Explainify is a multi‑agent pipeline that orchestrates several specialized components:
 
 ```mermaid
 graph TB
@@ -166,60 +131,104 @@ graph TB
     style F fill:#d1c4e9
 ```
 
-## Installation
+---
 
-First, install uv (if you haven't already):
+## 📦 Installation
 
-```bash
-# On macOS and Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
+### Prerequisites
 
-# Or using pip
-pip install uv
-```
+- Python 3.11+
+- `uv` (fast Python package manager)
+- Manim, FFmpeg, LaTeX (all included in Docker)
 
-### Setup
+### Quick start (using Docker – recommended)
 
 ```bash
 git clone https://github.com/Flowthread/Explainify.git
 cd Explainify
-
-# Create virtual environment and install all dependencies
-uv sync
-
-# Activate the virtual environment
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-cp .env.example .env
+docker compose up
 ```
 
-## Usage
+Then open `http://localhost:5000`.
 
-Start the Flask server:
+### Local setup (without Docker)
 
 ```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone and setup
+git clone https://github.com/Flowthread/Explainify.git
+cd Explainify
+uv sync
+source .venv/bin/activate   # or .venv\Scripts\activate on Windows
+cp .env.example .env
+
+# Start Flask server
 python src/main.py
 ```
 
-Then open your browser and navigate to:
+Then open your browser and navigate to `http://localhost:5000`.
+
+---
+
+## 🔑 API Keys
+
+Explainify supports **Claude** and **OpenAI** as LLM providers. Configure at least one in `.env`:
+
 ```
-http://localhost:5000
+CLAUDE_API_KEY=your_key        # priority 1 (used in auto mode)
+OPENAI_API_KEY=your_key        # fallback; also required for TTS
 ```
 
-or 
+Auto mode uses Claude first, then falls back to OpenAI. You can also force a provider in the UI.
 
-```bash
-docker compose up
+---
+
+## 🎯 Demo Video
+
+Watch a 3‑minute walkthrough (link to be added):  
+`https://youtu.be/your-link-here`
+
+---
+
+## 📁 Repository Structure
+
+```
+Explainify/
+├── src/
+│   ├── animations.py          # Storyboard generation
+│   ├── manim_generator.py     # Manim code + repair loop
+│   ├── tts_generator.py       # TTS narration
+│   ├── concat_video.py        # Video + audio merging
+│   ├── video_generator.py     # Job orchestration
+│   └── main.py                # Flask API server
+├── public/                    # Demo GIFs, logos
+├── .env.example
+├── Dockerfile
+├── docker-compose.yml
+├── README.md
+└── LICENSE (MIT)
 ```
 
 ---
 
-## Links
+## 📄 License
 
-- **Repository:** https://github.com/Flowthread/Explainify
-- **Issues:** https://github.com/Flowthread/Explainify/issues
-- **Developer:** [@Flowthread](https://github.com/Flowthread)
+**MIT License** – free to use, modify, and distribute.
 
-&copy; 2026 Explainify. Open Source Project (MIT License).
+---
+
+## 🙌 Built for IncludAI 2026
+
+Explainify was created for the [IncludAI – Neurodiversity Hackathon](https://includai-2026.devpost.com) as a tool that makes learning accessible through visual and auditory content.
+
+---
+
+## 📬 Contact
+
+- GitHub: [github.com/Flowthread/Explainify](https://github.com/Flowthread/Explainify)
+- Issues: [github.com/Flowthread/Explainify/issues](https://github.com/Flowthread/Explainify/issues)
+- Developer: [@Flowthread](https://github.com/Flowthread)
 
 
