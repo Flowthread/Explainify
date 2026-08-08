@@ -19,6 +19,20 @@ Built for neurodivergent learners who absorb information better through visuals 
 
 ---
 
+## 🎬 Generated Video Example
+
+A real video Explainify produced for the topic *"How do machines learn to recognize MNIST dataset numbers?"* — storyboard → Manim animation → narration → final MP4.
+
+<div align="center">
+
+<video controls width="80%" src="./public/example-mnist.mp4"></video>
+
+</div>
+
+> Can't load the player above? Download or stream it directly: [`example-mnist.mp4`](./public/example-mnist.mp4)
+
+---
+
 ## 🧠 The Problem
 
 Most educational content is text‑heavy and static.  
