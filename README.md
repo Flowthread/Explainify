@@ -9,7 +9,7 @@
 <div align="center"> 
 
 ## Demo 
-![Explainify in action](./public/output6.gif) 
+![Explainify in action](./public/output6.mp4) 
 
 </div> 
 
